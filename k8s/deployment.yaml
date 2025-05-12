@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alphon-x4-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alphon-x4-app
+  template:
+    metadata:
+      labels:
+        app: alphon-x4-app
+    spec:
+      containers:
+      - name: alphon-x4-app
+        image: alphon-x4-app:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
