@@ -1,5 +1,14 @@
 docker run -d \
   --name jenkins \
-  -p 8081:8080 -p 50000:50000 \
+  --network host \
+  -u root \
+  -p 8081:8080 \
+  -p 50000:50000 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /usr/bin/docker:/usr/bin/docker \
+  -v /usr/local/bin/kubectl:/usr/local/bin/kubectl \
+  -v /usr/local/bin/k3s:/usr/local/bin/k3s \
+  -v /etc/rancher:/etc/rancher \
+  -v /run/k3s:/run/k3s \
   -v jenkins_home:/var/jenkins_home \
   jenkins/jenkins:lts
